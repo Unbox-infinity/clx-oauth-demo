@@ -23,6 +23,8 @@ target 'clxAuthDemo' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'SatisMeter'
+
   target 'clxAuthDemoTests' do
     inherit! :complete
     # Pods for testing
