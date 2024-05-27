@@ -16,6 +16,9 @@
    TouchableOpacity,
    ActivityIndicator,
    Dimensions,
+   Linking,
+   Platform,
+   Alert,
  } from 'react-native';
  
  import {
@@ -23,6 +26,8 @@
    Header,
  } from 'react-native/Libraries/NewAppScreen';
 import { useState } from 'react';
+import pkceChallenge  from 'react-native-pkce-challenge';
+import { authorizeServer } from '../utils/request';
  
  function AppHomeScreen({route, navigation}): React.JSX.Element {
    const isDarkMode = false;
@@ -34,6 +39,32 @@ import { useState } from 'react';
 
    const { height } = Dimensions.get('window')
  
+   const handleLoginBtn = async () => {
+
+    setIsLoading(true);
+    try {
+      const appInstalled = await Linking.canOpenURL('myunbox://');
+
+      if (!appInstalled) {
+        console.log({appNotInstalled: true})
+      }
+
+      const challenge = pkceChallenge();
+      const url = 'myunbox://authorize';
+      const codeChallenge = challenge.codeChallenge;
+      const code = await authorizeServer(codeChallenge);
+      console.log({
+        code, codeChallenge, url
+      })
+      const appToOpen = `${url}/${code.login_code_to_sign}?callback=clxauthdemo://app`;
+      await Linking.openURL(appToOpen);
+      setIsLoading(false);
+    } catch (error) {
+      console.log({error});
+      Alert.alert('Error', JSON.stringify(error?.message || {message: 'something went wrong'}));
+      setIsLoading(false);
+    }
+   }
    return (
      
     <SafeAreaView style={backgroundStyle}>
@@ -60,14 +91,7 @@ import { useState } from 'react';
               borderRadius: 10,
               alignItems: 'center',
             }}
-            onPress={() => {
-              setIsLoading(true)
-              setTimeout(() => {
-                setIsLoading(false)
-
-                navigation.navigate('LoggedInScreen');
-              }, 3000)
-            }}>
+            onPress={handleLoginBtn}>
             {isLoading ? (
               <ActivityIndicator size={'small'} />
             ) : (
