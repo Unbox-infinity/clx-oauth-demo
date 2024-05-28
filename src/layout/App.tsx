@@ -65,6 +65,11 @@ import { authorizeServer } from '../utils/request';
       setIsLoading(false);
     }
    }
+   useEffect(() => {
+     if (route.params.token) {
+       console.log(route.params.token, route.params.code_status);
+     }
+   }, [route?.params?.token, route?.params?.code_status]);
    return (
      
     <SafeAreaView style={backgroundStyle}>

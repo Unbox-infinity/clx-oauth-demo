@@ -17,7 +17,14 @@ function App(): React.JSX.Element {
       fallback={<Text>Loading...</Text>}
       linking={{
         enabled: true,
-        prefixes: ['clxauthdemo://'],
+        prefixes: ['ClxAuthDemo://','clxauthdemo://'],
+        config: {
+          screens: {
+            HomeScreen: {
+              path: 'app/my_unbox/authorization/:code_status/:token',
+            },
+          },
+        },
       }}>
         <RootStackNavigator />
     </NavigationContainer>
