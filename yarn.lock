@@ -3123,6 +3123,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@unbox-infinity/clx-auth-myunbox-react-native@file:../lib-myunbox-auth-react-native::locator=clxAuthDemo%40workspace%3A.":
+  version: 0.0.7-0
+  resolution: "@unbox-infinity/clx-auth-myunbox-react-native@file:../lib-myunbox-auth-react-native#../lib-myunbox-auth-react-native::hash=c136d5&locator=clxAuthDemo%40workspace%3A."
+  checksum: ad3be0a44c55bd08b1c8301e421277ffc1256d3089da1e6b2a78198a68678c83d058ee3a0b7ece1ed22e1c344a990ed5d2fb947d9bbc54abedd0dfc2f52160ba
+  languageName: node
+  linkType: hard
+
 "@ungap/structured-clone@npm:^1.2.0":
   version: 1.2.0
   resolution: "@ungap/structured-clone@npm:1.2.0"
@@ -3943,6 +3950,7 @@ __metadata:
     "@types/base-64": ^1.0.2
     "@types/react": ^18.2.6
     "@types/react-test-renderer": ^18.0.0
+    "@unbox-infinity/clx-auth-myunbox-react-native": "file:../lib-myunbox-auth-react-native"
     babel-jest: ^29.6.3
     base-64: ^1.0.0
     eslint: ^8.19.0

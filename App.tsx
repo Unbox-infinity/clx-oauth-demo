@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import RootStackNavigator from './src/RootStackNavigator';
+import { callbackDeeplinkUnboxPath } from '@unbox-infinity/clx-auth-myunbox-react-native';
 
 function App(): React.JSX.Element {
   return (
@@ -21,7 +22,7 @@ function App(): React.JSX.Element {
         config: {
           screens: {
             HomeScreen: {
-              path: 'app/my_unbox/authorization/:code_status/:token',
+              path: callbackDeeplinkUnboxPath,
             },
           },
         },

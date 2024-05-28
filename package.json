@@ -16,6 +16,7 @@
     "@react-navigation/native-stack": "^6.9.26",
     "@react-navigation/stack": "^6.3.29",
     "@types/base-64": "^1.0.2",
+    "@unbox-infinity/clx-auth-myunbox-react-native": "file:../lib-myunbox-auth-react-native",
     "base-64": "^1.0.0",
     "react": "18.2.0",
     "react-native": "0.74.1",
