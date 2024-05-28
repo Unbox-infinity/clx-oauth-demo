@@ -16,7 +16,7 @@ const RootStackNavigator = () => {
       <RootStack.Screen
         name={'LoggedInScreen'}
         options={{
-          headerShown: true,
+          headerShown: false,
         }}
         component={LoggedInScreen}
       />
