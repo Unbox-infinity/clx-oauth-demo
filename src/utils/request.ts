@@ -33,9 +33,43 @@ export const authorizeServer = async (code_challenge: any) => {
     });
     const response = await result.json();
     if (response?.error){
-      console.log({
-        response
-      })
+      throw {
+        message: response?.error_description
+      }
+    }
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+export const requestToken = async (
+  code: string,
+  verifier: string,
+): Promise<any> => {
+  const payload: any = {
+    grant_type: 'authorization_code',
+    code: code,
+    client_id: clientId,
+    code_verifier: verifier,
+  };
+
+  const formBody = Object.keys(payload)
+    .map(
+      key => encodeURIComponent(key) + '=' + encodeURIComponent(payload[key]),
+    )
+    .join('&');
+  try {
+    const result = await fetch(`${baseURL}/oauth2/token`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+      },
+      body: formBody,
+    });
+    const response = await result.json();
+    if (response?.error){
       throw {
         message: response?.error_description
       }
